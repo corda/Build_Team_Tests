@@ -25,6 +25,7 @@ plugins {
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
+    }
 }
 
 rootProject.name = "corda-cli-plugin-host"

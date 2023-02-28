@@ -19,33 +19,7 @@ dependencies {
 }
 
 repositories {
-    def cordaUseCache = System.getenv("CORDA_USE_CACHE")
-    if (cordaUseCache != null) {
-        maven {
-            url = "$artifactoryContextUrl/${cordaUseCache}"
-            name = "R3 Maven remote repositories"
-            authentication {
-                basic(BasicAuthentication)
-            }
-            credentials {
-                username = findProperty('cordaArtifactoryUsername') ?: System.getenv('CORDA_ARTIFACTORY_USERNAME')
-                password = findProperty('cordaArtifactoryPassword') ?: System.getenv('CORDA_ARTIFACTORY_PASSWORD')
-            }
-        }
-    } else {
-        maven {
-            url "${artifactoryContextUrl}/engineering-tools-maven"
-            authentication {
-                basic(BasicAuthentication)
-            }
-            credentials {
-                username = findProperty('cordaArtifactoryUsername') ?: System.getenv('CORDA_ARTIFACTORY_USERNAME')
-                password = findProperty('cordaArtifactoryPassword') ?: System.getenv('CORDA_ARTIFACTORY_PASSWORD')
-            }
-            content {
-                includeGroupByRegex 'com\\.r3\\.internal(\\..*)?'
-            }
-        }
+
         gradlePluginPortal()
-    }
+    
 }
